@@ -18,7 +18,7 @@ protocol AddContactControllerDelegate: class {
 
 // MARK: - AddContactController
 
-class AddContactController: UITableViewController, UITextFieldDelegate {
+class AddContactController: UITableViewController {
   // MARK: - Outlets
   @IBOutlet weak var nameField: UITextField!
   @IBOutlet weak var emailField: UITextField!
@@ -59,9 +59,7 @@ class AddContactController: UITableViewController, UITextFieldDelegate {
     if contact.name.count > 0 {
       delegate?.addContactController(controller: self, didFinishAddingContact: contact)
     }
-    // delegate?.addContactController(controller: self, didFinishAddingContact: contact)
   }
-  
   
   // MARK: - Table View
   
@@ -69,36 +67,4 @@ class AddContactController: UITableViewController, UITextFieldDelegate {
     return nil
   }
   
-  
-  // MARK: - Text Field Delegate
-  
-  func textField(_ nameField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
-//    let oldText: NSString = nameField.text! as NSString
-//    let newText: NSString = oldText.replacingCharacters(in: range, with: string) as NSString
-//
-//    doneBarButton.isEnabled = true
-//    return true
-    print("GOOD!!")
-
-    if let nameText = nameField.text {
-      print("FRED!!")
-      doneBarButton.isEnabled = (nameText.count > 1)
-      return (nameText.count > 1)
-    }
-    else {
-      print("HEAD!!")
-      doneBarButton.isEnabled = false
-      return true
-    }
-  }
-  
-  @objc func textFieldDidChange(_ textField: UITextField) {
-    if  nameField.text != nil {
-      doneBarButton.isEnabled = ((nameField.text?.count)! > 1)
-    }
-    else {
-      doneBarButton.isEnabled = false
-    }
-  }
 }
